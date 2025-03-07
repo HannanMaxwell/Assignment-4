@@ -33,7 +33,6 @@ DATA_FILENAME = "bank_data.csv"
 DATA_FILE_PATH = f"{SCRIPT_DIRECTORY}/{DATA_FILENAME}"
 
 try:
-
     with open(DATA_FILE_PATH, 'r') as csv_file:
         reader = csv.reader(csv_file)
 

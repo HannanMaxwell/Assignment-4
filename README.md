@@ -12,3 +12,8 @@ Muhammad Rahmani
 
 I will be using exception handling and making sure that all the programs
 are accurate and correct as a software development manager.
+
+## Code Modification 1
+
+If the file is not found, try-except block will catch it and print
+the file not found message.
