@@ -88,11 +88,15 @@ try:
             except ValueError as e:
                 is_valid_record = False
                 error_message = f"{transaction_amount} is an invalid transaction amount."
-except FileNotFoundError as e:
-    print("The bank data file csv_file cannot be found.")        
-
-
+        
         ### COLLECT INVALID RECORDS ###
+            invalid_transactions = (transaction, error_message)
+            if not is_valid_record:
+                rejected_transactions.append(invalid_transactions)
+except FileNotFoundError as e:
+    print("The bank data file csv_file cannot be found.")
+
+print(rejected_transactions)
         
 report_title = "PiXELL River Transaction Report"
 print(report_title)
@@ -120,3 +124,4 @@ print('=' * len(rejected_report_title))
 
 for rejected_transaction in rejected_transactions:
     print("REJECTED:", rejected_transaction)
+

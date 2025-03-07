@@ -17,3 +17,9 @@ are accurate and correct as a software development manager.
 
 If the file is not found, try-except block will catch it and print
 the file not found message.
+
+## Code Modification 2
+
+The transaction type and amount are validated if they are invalid, they are
+added to the invalid_transactions tuple, and then that tuple is added to
+the rejected_transactions list.
