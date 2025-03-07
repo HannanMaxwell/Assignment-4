@@ -50,32 +50,44 @@ try:
             # Gets the transaction type from the second column
             transaction_type = transaction[1]
 
-            ### VALIDATION 1 ###
+            ### VALIDATION 1 ### 
+
+            
+            if transaction_type not in valid_transaction_types:
+                is_valid_record = False
+                error_message = f"The transaction type {transaction_type} is invalid."
+
+
 
             ### VALIDATION 2 ###
-            # Gets the transaction amount from the third column
-            transaction_amount = float(transaction[2])
 
-            if is_valid_record:
-                # Initialize the customer's account balance if it doesn't 
-                # already exist
-                if customer_id not in customer_data:
-                    customer_data[customer_id] = {'balance': 0, 'transactions': []}
-                # Update the customer's account balance based on the 
-                # transaction type
-                elif transaction_type == 'deposit':
-                    customer_data[customer_id]['balance'] += transaction_amount
-                    transaction_count += 1
-                    total_transaction_amount += transaction_amount
-                elif transaction_type == 'withdrawal':
-                    customer_data[customer_id]['balance'] += transaction_amount
-                    transaction_count += 1
-                    total_transaction_amount += transaction_amount
-                
-                # Record transactions in the customer's transaction history
-                customer_data[customer_id]['transactions'].append(
-                    (transaction_amount, transaction_type)
-                    )
+            try:
+                # Gets the transaction amount from the third column
+                transaction_amount = float(transaction[2])
+
+                if is_valid_record:
+                    # Initialize the customer's account balance if it doesn't 
+                    # already exist
+                    if customer_id not in customer_data:
+                        customer_data[customer_id] = {'balance': 0, 'transactions': []}
+                    # Update the customer's account balance based on the 
+                    # transaction type
+                    elif transaction_type == 'deposit':
+                        customer_data[customer_id]['balance'] += transaction_amount
+                        transaction_count += 1
+                        total_transaction_amount += transaction_amount
+                    elif transaction_type == 'withdrawal':
+                        customer_data[customer_id]['balance'] += transaction_amount
+                        transaction_count += 1
+                        total_transaction_amount += transaction_amount
+                    
+                    # Record transactions in the customer's transaction history
+                    customer_data[customer_id]['transactions'].append(
+                        (transaction_amount, transaction_type)
+                        )
+            except ValueError as e:
+                is_valid_record = False
+                error_message = f"{transaction_amount} is an invalid transaction amount."
 except FileNotFoundError as e:
     print("The bank data file csv_file cannot be found.")        
 
