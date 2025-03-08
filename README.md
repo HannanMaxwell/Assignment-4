@@ -23,3 +23,10 @@ the file not found message.
 The transaction type and amount are validated if they are invalid, they are
 added to the invalid_transactions tuple, and then that tuple is added to
 the rejected_transactions list.
+
+## Code Modification 3
+
+Removed transaction_counter. Separated the deposit and withdraw if/elif
+statements from customer_id not in customer_data if statement, which
+now allows for the transaction_count, balance and average_transaction_amount
+to be displayed and calculated correctly.

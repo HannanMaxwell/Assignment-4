@@ -72,15 +72,18 @@ try:
                         customer_data[customer_id] = {'balance': 0, 'transactions': []}
                     # Update the customer's account balance based on the 
                     # transaction type
-                    elif transaction_type == 'deposit':
+                    if transaction_type == 'deposit':
                         customer_data[customer_id]['balance'] += transaction_amount
                         transaction_count += 1
                         total_transaction_amount += transaction_amount
+                        #print(customer_data)
                     elif transaction_type == 'withdrawal':
                         customer_data[customer_id]['balance'] += transaction_amount
                         transaction_count += 1
                         total_transaction_amount += transaction_amount
                     
+                    
+                    print(transaction_count)
                     # Record transactions in the customer's transaction history
                     customer_data[customer_id]['transactions'].append(
                         (transaction_amount, transaction_type)
@@ -96,7 +99,6 @@ try:
 except FileNotFoundError as e:
     print("The bank data file csv_file cannot be found.")
 
-print(rejected_transactions)
         
 report_title = "PiXELL River Transaction Report"
 print(report_title)
@@ -115,7 +117,7 @@ for customer_id, data in customer_data.items():
         amount, type = rejected_transaction
         print(f"{type.capitalize():>16}:{amount:>12}")
 
-average_transaction_amount = total_transaction_amount / transaction_counter
+average_transaction_amount = total_transaction_amount / transaction_count
 print(f"AVERAGE TRANSACTION AMOUNT: {average_transaction_amount}")
 
 rejected_report_title = "REJECTED RECORDS"
