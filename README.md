@@ -30,3 +30,13 @@ Removed transaction_counter. Separated the deposit and withdraw if/elif
 statements from customer_id not in customer_data if statement, which
 now allows for the transaction_count, balance and average_transaction_amount
 to be displayed and calculated correctly.
+
+## Code Modifcation 4
+
+Changed the if statement if transaction_type == "withdrawal", to transaction_type == "withdraw.
+
+## Code Modification 5
+
+Under withdraw if statement, changed the customer balance += transaction_amount to
+balance -= transaction_amount and changed total_transaction_amount += transaction_amount
+to total_transaction_amount -= transaction_amount.

@@ -60,7 +60,6 @@ try:
 
 
             ### VALIDATION 2 ###
-
             try:
                 # Gets the transaction amount from the third column
                 transaction_amount = float(transaction[2])
@@ -77,10 +76,10 @@ try:
                         transaction_count += 1
                         total_transaction_amount += transaction_amount
                         #print(customer_data)
-                    elif transaction_type == 'withdrawal':
-                        customer_data[customer_id]['balance'] += transaction_amount
+                    elif transaction_type == 'withdraw':
+                        customer_data[customer_id]['balance'] -= transaction_amount
                         transaction_count += 1
-                        total_transaction_amount += transaction_amount
+                        total_transaction_amount -= transaction_amount
                     
                     
                     print(transaction_count)
@@ -90,7 +89,8 @@ try:
                         )
             except ValueError as e:
                 is_valid_record = False
-                error_message = f"{transaction_amount} is an invalid transaction amount."
+                error_message = f"{transaction[2]} is an invalid transaction amount."
+                print(e)
         
         ### COLLECT INVALID RECORDS ###
             invalid_transactions = (transaction, error_message)
