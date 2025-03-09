@@ -1,12 +1,12 @@
 """This module contains a program that reads through transaction records
-and reports the results.
+and reports the results. Try except blocks catch errors and this program
+showcases my ability to debug programs.
 
-Example:
-    $ python pixell_transaction_report.py
+python pixell_transaction_report.py
 """
 
 __author__ = "Muhammad Rahmani"
-__version__ = "1.0.0"
+__version__ = "03-08-2025"
 
 import csv
 import os
@@ -32,6 +32,7 @@ DATA_FILENAME = "bank_data.csv"
 # The absolute path to the data file
 DATA_FILE_PATH = f"{SCRIPT_DIRECTORY}/{DATA_FILENAME}"
 
+# This try except block catches file not found errors
 try:
     with open(DATA_FILE_PATH, 'r') as csv_file:
         reader = csv.reader(csv_file)
@@ -60,6 +61,8 @@ try:
 
 
             ### VALIDATION 2 ###
+
+            # This try except block catches all the Value Errors.
             try:
                 # Gets the transaction amount from the third column
                 transaction_amount = float(transaction[2])
@@ -81,8 +84,6 @@ try:
                         transaction_count += 1
                         total_transaction_amount -= transaction_amount
                     
-                    
-                    print(transaction_count)
                     # Record transactions in the customer's transaction history
                     customer_data[customer_id]['transactions'].append(
                         (transaction_amount, transaction_type)
@@ -90,7 +91,6 @@ try:
             except ValueError as e:
                 is_valid_record = False
                 error_message = f"{transaction[2]} is an invalid transaction amount."
-                print(e)
         
         ### COLLECT INVALID RECORDS ###
             invalid_transactions = (transaction, error_message)
@@ -108,7 +108,7 @@ print('=' * len(report_title))
 for customer_id, data in customer_data.items():
     balance = data['balance']
 
-    print(f"Customer {customer_id} has a balance of {balance}.")
+    print(f"Customer {customer_id} has a balance of {balance:.2f}.")
     
     # Print the transaction history for the customer
     print("Transaction History:")
@@ -118,7 +118,7 @@ for customer_id, data in customer_data.items():
         print(f"{type.capitalize():>16}:{amount:>12}")
 
 average_transaction_amount = total_transaction_amount / transaction_count
-print(f"AVERAGE TRANSACTION AMOUNT: {average_transaction_amount}")
+print(f"AVERAGE TRANSACTION AMOUNT: {average_transaction_amount:.2f}")
 
 rejected_report_title = "REJECTED RECORDS"
 print(rejected_report_title)

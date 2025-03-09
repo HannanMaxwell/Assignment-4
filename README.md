@@ -33,10 +33,18 @@ to be displayed and calculated correctly.
 
 ## Code Modifcation 4
 
-Changed the if statement if transaction_type == "withdrawal", to transaction_type == "withdraw.
+Changed the if statement if transaction_type == "withdrawal", to transaction_type == "withdraw,
+since withdraw is the correct transaction_type.
+
 
 ## Code Modification 5
 
 Under withdraw if statement, changed the customer balance += transaction_amount to
 balance -= transaction_amount and changed total_transaction_amount += transaction_amount
 to total_transaction_amount -= transaction_amount.
+The purpose of doing this is to have withdraw substract from customer_balance and from
+total_transaction amount.
+
+## Code Modification 6
+
+Formatted customer balance and average transaction amount to 2 decimal places.
