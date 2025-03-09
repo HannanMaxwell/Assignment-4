@@ -87,6 +87,8 @@ try:
                     customer_data[customer_id]['transactions'].append(
                         (transaction_amount, transaction_type)
                         )
+            # If there is a value error this exception block makes the is_valid_record false
+            # and adds tot he error message that the transaction is invalid.
             except ValueError as e:
                 is_valid_record = False
                 error_message = f"{transaction[2]} is an invalid transaction amount."
@@ -95,6 +97,7 @@ try:
             invalid_transactions = (transaction, error_message)
             if not is_valid_record:
                 rejected_transactions.append(invalid_transactions)
+# This except block runs if the file is not found and prints that the file cannot be found.
 except FileNotFoundError as e:
     print("The bank data file csv_file cannot be found.")
 
