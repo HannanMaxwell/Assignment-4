@@ -15,7 +15,6 @@ valid_transaction_types = ['deposit', 'withdraw']
 customer_data = {}
 rejected_transactions = []
 transaction_count = 0
-transaction_counter = 0
 total_transaction_amount = 0
 is_valid_record = True
 error_message = ''
